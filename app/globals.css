@@ -1,0 +1,583 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Gyeonggi_Title_Light';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Title_Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gyeonggi_Title_bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Title_bold.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+  font-family: Gyeonggi_Title_Light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainContainer {
+  max-width: 448px;
+  width: 100%;
+  height: 100%;
+  background-color: #f3f2ef;
+  position: relative;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.titleBoxBackground {
+  content: '';
+  background: linear-gradient(#5B5247, #937C5F);
+  position: absolute;
+  inset: 0 0 0 0;
+}
+
+.titleBoxBackground::before {
+  content: '';
+  position: absolute;
+  background-image: url(/images/titleBackWordTop.svg), url(/images/titleBackWordBottom.svg);
+  background-position: top -15px center, bottom -15px center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, contain;
+  inset: 0 0 0 0;
+}
+
+.titleBoxBackground::after {
+  content: '';
+  background: linear-gradient(#000000, #00000000);
+  position: absolute;
+  inset: 0 0 0 0;
+}
+
+.titleBoxBackgroundBottomFade {
+  background: linear-gradient(#F3F2EF00, #f3f2ef);
+  width: 100%;
+  position: relative;
+  margin-top: -193px;
+  height: 195px;
+  z-index: 3;
+}
+
+.titleBoxTitle {
+  position: relative;
+  margin-top: 84px;
+  opacity: 0;
+  font-size: 20px;
+  color: #FFFFFF;
+  animation: animTitleBoxTitle .5s 1s forwards ease-in-out;
+}
+
+.titleBoxSubTitle {
+  position: relative;
+  opacity: 0;
+  font-size: 20px;
+  padding-bottom: 484px;
+  color: #FFFFFF;
+  animation: animTitleBoxSubTitle .5s 1.25s forwards ease-in-out;
+}
+
+.titleBoxSeparator {
+  position: relative;
+  margin: 12px 0;
+  width: 20px;
+  background-image: url(/images/titleBoxSeparator.svg);
+  height: 20px;
+  background-position: center;
+  animation: animTitleBoxSeparator 1s forwards ease-in-out;
+}
+
+.titleBoxCharacter {
+  height: 521px;
+  width: 298px;
+  position: absolute;
+  bottom: 0;
+  right: -13px;
+  background-image: url(/images/titleChar.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 2;
+  animation: animTitleBoxCharacter 1s .5s forwards ease-in-out;
+}
+
+.titleBoxCharacterShadow {
+  content: '';
+  position: absolute;
+  height: 350px;
+  width: 400px;
+  filter: blur(10px);
+  background: linear-gradient(#D1C3AB, #B19C83);
+  opacity: 0;
+  bottom: -52px;
+  right: 77px;
+  transform: rotate(-15deg);
+  animation: animTitleBoxCharacterShadow 1s .5s forwards ease-in-out;
+}
+
+.titleBoxCharacterShadowBack {
+  content: '';
+  position: absolute;
+  height: 350px;
+  width: 400px;
+  filter: blur(10px);
+  background: linear-gradient(#D1C3AB, #B19C83);
+  opacity: 0;
+  bottom: -20px;
+  right: -283px;
+  transform: rotate(-10deg);
+  animation: animTitleBoxCharacterShadowBack 1s .5s forwards ease-in-out;
+}
+
+.titleBoxCharacterSpeechBubble {
+  border-radius: 50%;
+  position: absolute;
+  padding: 2px;
+  left: 20px;
+  margin-top: -20px;
+  background-color: #000000;
+  z-index: 5;
+  opacity: 0;
+  animation: animTitleBoxCharacterSpeechBubble 1s .75s forwards ease-in-out;
+}
+
+.titleBoxCharacterSpeechBubbleContents {
+  background-color: #FFFFFF;
+  padding: 45px 40px;
+  display: inline-flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  position: relative;
+  z-index: 2;
+  width: 215px;
+  height: 116px;
+  text-align: center;
+}
+
+.titleBoxCharacterSpeechBubble::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 67px;
+  left: 50px;
+  top: -10px;
+  background-position: center;
+  background-image: url(/images/speechBubbleTail.svg);
+  background-repeat: no-repeat;
+}
+
+.titleBoxCharacterSpeechBubble2 {
+  border-radius: 50%;
+  position: absolute;
+  padding: 2px;
+  background-color: #000000;
+  top: -100px;
+  z-index: 5;
+  opacity: 0;
+  left: 30px;
+  animation: animTitleBoxCharacterSpeechBubble 1s 1.75s forwards ease-in-out;
+}
+
+.titleBoxCharacterSpeechBubble2Contents {
+  background-color: #FFFFFF;
+  display: inline-flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  position: relative;
+  z-index: 2;
+  width: 240px;
+  height: 116px;
+  text-align: center;
+}
+
+.titleBoxCharacterSpeechBubble2::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 67px;
+  left: 70px;
+  bottom: -20px;
+  background-position: center;
+  background-image: url(/images/speechBubbleTail.svg);
+  background-repeat: no-repeat;
+}
+
+.cut2 {
+  height: 285px;
+  width: 120px;
+  margin-top: 120px;
+  border: 1px solid #000000;
+  margin-right: 24px;
+  background-image: url(/images/cut2.png);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  opacity: 0;
+  animation: animCut2 .5s 1.25s forwards ease-in-out;
+}
+
+.section2 {
+  position: relative;
+  display: flex;
+  justify-content: right;
+  padding-bottom: 40px;
+}
+
+.cut2Text {
+  height: 50px;
+  width: 80px;
+  position: absolute;
+  right: 90px;
+  top: 20px;
+  background-image: url(/images/cut2Text.svg);
+}
+
+.section3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.cut2Deco {
+  position: absolute;
+  inset: 0 0 0 0;
+  background-image: url(/images/cloud.svg);
+  background-position: left bottom 70px;
+  background-repeat: no-repeat;
+}
+
+.section3Bg {
+  position: relative;
+}
+
+.section3BottomFade {
+  background: linear-gradient(#F3F2EF00, #f3f2ef);
+  width: 100%;
+  height: 100px;
+  bottom: -2px;
+  z-index: 3;
+  position: absolute;
+}
+
+.fortuneGridHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.fortuneGridHeaderTitle {
+  font-size: 16px;
+}
+
+.fortuneGrid {
+  position: relative;
+  z-index: 3;
+  margin-top: -30px;
+  padding: 40px 20px;
+  margin-bottom: 80px;
+  border: 3px solid #2B557E;
+  background-color: #f5f3ec;
+  color: #424242;
+  width: calc(100% - 24px);
+  background-image: url(/images/fortuneDecoLeft.svg), url(/images/fortuneDecoRight.svg);
+  background-position: left 8px top 45px, right 8px top 26px;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.fortuneGrid::before {
+  content: '';
+  position: absolute;
+  inset: 8px -1px;
+  border: 1px solid #2B557E;
+}
+
+.fortuneGrid::after {
+  content: '';
+  position: absolute;
+  inset: -1px 8px;
+  border: 1px solid #2B557E;
+}
+
+.fortuneGridHeaderDate {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: Gyeonggi_Title_bold;
+}
+
+.fortuneGridTable {
+  width: 100%;
+  z-index: 5;
+  position: relative;
+  table-layout:fixed;
+}
+
+.fortuneGridTable thead th {
+  font-size: 21px;
+  padding: 14px 0;
+  border-right: .5px solid #8A8A8A;
+}
+
+.fortuneGridTable tr {
+  border-bottom: 1px solid #000000;
+}
+
+.fortuneGridTable tr.fortuneGridRowBorderGray {
+  border-bottom: .5px solid #8A8A8A;
+}
+
+.fortuneGridTable th:first-child, .fortuneGridTable th:last-child {
+  border-right: 1px solid #000000;
+}
+
+.fortuneSubTh {
+  font-size: 8px;
+}
+
+.fortuneGridTable tbody th {
+  font-size: 12px;
+  border-right: 1px solid #000000;
+  padding: 7px 0;
+  width: 60px;
+}
+
+.fortuneGridTable tbody td {
+  padding: 5px;
+  border-right: .5px solid #8A8A8A;
+  font-size: 14px;
+  background-color: #FFFFFF;
+  text-align: center;
+  width: calc((100% - 60px) / 4);
+}
+
+.fortuneGridTable tbody td:last-child {
+  border-right: 1px solid #000000;
+}
+
+.fortuneSubTdItem {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.fortuneSubTdItem:first-child {
+  margin-top: unset;
+}
+
+.fortuneSubTd {
+  font-size: 10px;
+}
+
+.fortuneItem {
+  border-radius: 13px;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  width: 55px;
+  flex-direction: column;
+}
+
+.fortuneItemNameKo {
+  font-size: 7px;
+}
+
+.fortuneItemNameKan {
+  font-size: 25px;
+  margin-top: -5px;
+}
+
+.fortuneItemSubName {
+  font-size: 8px;
+  margin-top: -8px;
+}
+
+.fortuneItem.im {
+  border-radius: 13px;
+  border: 1px solid #2F2F2F;
+  background-color: #2F2F2F;
+  color: #FFFFFF;
+}
+
+.fortuneItem.jung {
+  border-radius: 13px;
+  border: 1px solid #C23030;
+  background-color: #C23030;
+  color: #FFFFFF;
+}
+
+.fortuneItem.gye {
+  border-radius: 13px;
+  border: 1px solid #2F2F2F;
+  background-color: #2F2F2F;
+  color: #FFFFFF;
+}
+
+.fortuneItem.in {
+  border-radius: 13px;
+  border: 1px solid #18868C;
+  background-color: #18868C;
+  color: #FFFFFF;
+}
+
+.fortuneItem.sa {
+  border-radius: 13px;
+  border: 1px solid #C23030;
+  background-color: #C23030;
+  color: #FFFFFF;
+}
+
+.fortuneItem.hae {
+  border-radius: 13px;
+  border: 1px solid #292929;
+  background-color: #292929;
+  color: #FFFFFF;
+}
+
+.fortuneItem.yu {
+  border-radius: 13px;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+@keyframes animTitleBoxSeparator {
+  0% {
+    width: 20px;
+  }
+  100% {
+    width: 157px;
+  }
+}
+
+@keyframes animTitleBoxTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animTitleBoxSubTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animTitleBoxCharacter {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes animTitleBoxCharacterShadow {
+  0% {
+    opacity: 0;
+    transform: translateX(20px), rotate(-15deg);
+  }
+  100% {
+    opacity: .5;
+    transform: translateX(0), rotate(-15deg);
+  }
+}
+
+
+@keyframes animTitleBoxCharacterShadowBack {
+  0% {
+    opacity: 0;
+    transform: translateX(20px), rotate(-10deg);
+  }
+  100% {
+    opacity: .5;
+    transform: translateX(0), rotate(-10deg);
+  }
+}
+
+@keyframes animTitleBoxCharacterSpeechBubble {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes animCut2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
